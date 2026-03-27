@@ -57,7 +57,7 @@ fig.update_xaxes(showgrid=True, gridcolor = "#464755")
 fig.update_yaxes(showgrid=True, gridcolor = "#464755")
 st.plotly_chart(fig)
 
-fwhm = st.number_input('Koks naudojamo lazerio FWHM? (ns): ', min_value = 0.001, value = 0.2, format="%.4f")
+fwhm = st.number_input('Koks naudojamo lazerio FWHM? (ns): ', min_value = 0.000001, value = 0.2, format="%.4f")
 if not fwhm:
   st.stop()
 
