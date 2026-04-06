@@ -104,7 +104,7 @@ if st.session_state.step == 'run_exp':
   data = {
     'parametras': ['lifetime', 'fono lygis y ašyje', 'smailės padėtis x ašyje'],
     'min': [0.1, bg-bg/10, x[j]-delta0],
-    'max': [10, bg+bg/10, x[j]+2*delta0],
+    'max': [10, bg+bg/10+1e-8, x[j]+2*delta0],
     'spėjimas': [1, bg, 5]
   }
   ribos = pd.DataFrame(data)
