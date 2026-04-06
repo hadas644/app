@@ -34,7 +34,7 @@ c1 = st.text_input('Kuris stulpelis atitinka X ašį? (jei tokio stulpelio nėra
 if not c1:
   st.stop()
 if c1 == '0':
-  step = st.number_input("Koks yra X ašies žingsnio dydis (*step size*)? (ns)", min_value = 0.00001,  step=0.00001, value = 0.1, format="%.5f")
+  step = st.number_input("Koks yra X ašies žingsnio dydis (*step size*)? (ns)", min_value = 0.00001, value = 0.1, format="%.4f")
   if not step:
     st.stop()
   df['0'] = np.arange(0, (ilgis+10)*step, step)[:ilgis]
@@ -57,7 +57,7 @@ fig.update_xaxes(showgrid=True, gridcolor = "#464755")
 fig.update_yaxes(showgrid=True, gridcolor = "#464755")
 st.plotly_chart(fig)
 
-fwhm = st.number_input('Koks naudojamo lazerio FWHM? (ns): ', min_value = 0.000001, value = 0.2, format="%.4f")
+fwhm = st.number_input('Koks naudojamo lazerio FWHM? (ps): ', min_value = 0.001,  step=0.001, value = 0.1, format="%.3f")
 if not fwhm:
   st.stop()
 
@@ -89,7 +89,7 @@ if st.session_state.step == 'run_exp':
   x = np.array(df_fit[c1]-min(df_fit[c1]))
   y = np.array(df_fit[c2]/max(df_fit[c2]))
 
-  s = fwhm/(2*np.sqrt(2*np.log(2)))
+  s = (fwhm/1000)/(2*np.sqrt(2*np.log(2)))
   funkc = partial(exp_gauss, sigma = s)
 
   j = np.argmax(y)
@@ -160,7 +160,7 @@ if st.session_state.step == 'run_bi':
   x = np.array(df_fit[c1]-min(df_fit[c1]))
   y = np.array(df_fit[c2]/max(df_fit[c2]))
 
-  s = fwhm/(2*np.sqrt(2*np.log(2)))
+  s = (fwhm/1000)/(2*np.sqrt(2*np.log(2)))
   funkc = partial(exp_gauss, sigma = s)
 
   j = np.argmax(y)
