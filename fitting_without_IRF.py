@@ -81,7 +81,6 @@ if st.session_state.step == 'run_exp':
     y = np.exp(-x/tau)
 
     final = np.convolve(gauss, y)[:len(x)]
-    st.write(min(final), max(final))
     final = (final-min(final))/(max(final)-min(final))
     final = final*(1-H)+H
 
