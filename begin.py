@@ -10,8 +10,5 @@ from functools import partial
 import plotly.graph_objects as go
 
 
-def page2():
-  st.title('')
-
-pg = st.navigation([st.Page("testforapp.py", title = 'Fitting without IRF'), st.Page(page2, title = 'Fitting with IRF')])
+pg = st.navigation([st.Page("fitting_without_IRF.py", title = 'Fitting without IRF'), st.Page("fitting_with_IRF.py", title = 'Fitting with IRF')])
 pg.run()
