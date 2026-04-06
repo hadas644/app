@@ -28,6 +28,7 @@ df_read = pd.read_csv(uploaded_file, delimiter=r"\s+|;|,", names=[str(i+1) for i
 st.write(df_read.head())
 
 df = df_read
+df = df.apply(pd.to_numeric, errors='coerce')
 ilgis = len(df['1'])
 
 c1 = st.text_input('Kuris stulpelis atitinka X ašį? (jei tokio stulpelio nėra, įrašyti 0): ', '0')
@@ -103,9 +104,9 @@ if st.session_state.step == 'run_exp':
   st.write('**Nustatykite parametrų ribas fit funkcijai:**')
 
   data = {
-    'parametras': ['lifetime', 'fono lygis y ašyje', 'smailės padėtis x ašyje'],
+    'parametras': ['lifetime (ns)', 'fono lygis y ašyje', 'smailės padėtis x ašyje'],
     'min': [0.1, bg-bg/10, x[j]-delta0],
-    'max': [10, bg+bg/10, x[j]+2*delta0],
+    'max': [9.5, bg+bg/10, x[j]+2*delta0],
     'spėjimas': [1, bg, 5]
   }
   ribos = pd.DataFrame(data)
@@ -124,7 +125,7 @@ if st.session_state.step == 'run_exp':
   st.write('**Rezultatai iš fit funkcijos:**')
 
   res = pd.DataFrame({
-    'parametras': ['lifetime', 'fono lygis y ašyje', 'smailės padėtis x ašyje'],
+    'parametras': ['lifetime (ns)', 'fono lygis y ašyje', 'smailės padėtis x ašyje'],
     'nustatyta vertė': popt,
     'paklaida': paklaida
   })
@@ -175,9 +176,9 @@ if st.session_state.step == 'run_bi':
 
 
   data = {
-    'parametras': ['trumpesnis lifetime', 'trumpesnio A', 'ilgesnis lifetime',  'fono lygis y ašyje', 'smailės padėtis x ašyje'],
+    'parametras': ['trumpesnis lifetime (ns)', 'trumpesnio A', 'ilgesnis lifetime (ns)',  'fono lygis y ašyje', 'smailės padėtis x ašyje'],
     'min': [0.1, 0, 1, bg-bg/10, x[j]-delta0],
-    'max': [1, 1, 10, bg+bg/10, x[j]+2*delta0],
+    'max': [1.5, 1, 9.5, bg+bg/10, x[j]+2*delta0],
     'spėjimas': [0.15, 0.8, 2, bg, 5]
   }
   ribos = pd.DataFrame(data)
