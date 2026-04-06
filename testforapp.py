@@ -34,7 +34,7 @@ c1 = st.text_input('Kuris stulpelis atitinka X ašį? (jei tokio stulpelio nėra
 if not c1:
   st.stop()
 if c1 == '0':
-  step = st.number_input("Koks yra X ašies žingsnio dydis (*step size*)? (ns)", min_value = 0.00001, value = 0.1, format="%.4f")
+  step = st.number_input("Koks yra X ašies žingsnio dydis (*step size*)? (ns)", min_value = 0.00001, value = 0.08, format="%.4f")
   if not step:
     st.stop()
   df['0'] = np.arange(0, (ilgis+10)*step, step)[:ilgis]
