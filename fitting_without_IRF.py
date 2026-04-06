@@ -96,8 +96,8 @@ if st.session_state.step == 'run_exp':
   j = np.argmax(y)
   tau = 1 
   delta0 = tau / (1 + s/tau)
-  h = np.argmax(np.array(data_y) != 0)
-  bg = np.average(np.array(data_y)[h:h+10])
+  h = np.argmax(np.array(y) != 0)
+  bg = np.average(np.array(y)[h:h+10])
 
   sakinys = 'Duomenų fono lygis y ašyje lygus ' + str(round(bg, 4))+ ' ir smailės padėtis x ašyje yra ' +  str(round(x[j], 3))
   st.write('Duomenų **fono lygis** y ašyje lygus', round(bg, 4), ' ir **smailės padėtis** x ašyje yra', round(x[j], 3))
@@ -168,8 +168,8 @@ if st.session_state.step == 'run_bi':
   j = np.argmax(y)
   tau = 1 
   delta0 = tau / (1 + s/tau)
-  h = np.argmax(np.array(data_y) != 0)
-  bg = np.average(np.array(data_y)[h:h+10])
+  h = np.argmax(np.array(y) != 0)
+  bg = np.average(np.array(y)[h:h+10])
 
   st.subheader ('Biexponential fitting')
   st.write('Duomenų **fono lygis** y ašyje lygus', round(bg, 4), ' ir **smailės padėtis** x ašyje yra', round(x[j], 3))
