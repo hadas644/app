@@ -107,7 +107,7 @@ if st.session_state.step == 'run_exp':
     'parametras': ['lifetime (ns)', 'fono lygis y ašyje', 'smailės padėtis x ašyje'],
     'min': [0.1, bg-bg/10, x[j]-delta0],
     'max': [9.5, bg+bg/10, x[j]+2*delta0],
-    'spėjimas': [1, bg, 5]
+    'spėjimas': [1, bg, x[j]]
   }
   ribos = pd.DataFrame(data)
 
@@ -180,7 +180,7 @@ if st.session_state.step == 'run_bi':
     'parametras': ['trumpesnis lifetime (ns)', 'trumpesnio A', 'ilgesnis lifetime (ns)',  'fono lygis y ašyje', 'smailės padėtis x ašyje'],
     'min': [0.1, 0, 1, bg-bg/10, x[j]-delta0],
     'max': [1.5, 1, 9.5, bg+bg/10, x[j]+2*delta0],
-    'spėjimas': [0.15, 0.8, 2, bg, 5]
+    'spėjimas': [0.15, 0.8, 2, bg, x[j]]
   }
   ribos = pd.DataFrame(data)
   eribos = st.data_editor(ribos)
