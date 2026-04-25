@@ -47,8 +47,8 @@ if not c2:
 fig = go.Figure()
 
 i = np.argmax(df[c2])
-start = float(df[c1][i])-20
-end = float(df[c1][i])+20
+start = float(df[c1][i])-10
+end = float(df[c1][i])+30
 
 fig.update_layout({
 'font_size':16, 
