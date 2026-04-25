@@ -214,13 +214,7 @@ if st.session_state.step == 'run_bi':
 
     final = np.convolve(irf_yn, y)
     d = np.argmax(final)-m
-    if d < 0 or d + len(x) > len(final):
-      return np.zeros_like(x)  # safe fallback
-
     final = final[d:d+len(x)]
-
-    if len(final) != len(x):
-      return np.zeros_like(x)
 
     if len(final) == 0:
         st.warning('data smailės padėtis yra per daug dešinėje - pabandyk praleisti daugiau duomenų failo eilučių (data smailė turėtų būti kairiau nei IRF smailė)')
