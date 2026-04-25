@@ -106,6 +106,7 @@ fig.update_xaxes(showgrid=True, gridcolor = "#464755")
 fig.update_yaxes(showgrid=True, gridcolor = "#464755")
 st.plotly_chart(fig)
 
+
 crop_data = df_data[(df_data[c1_data]>start_d) & (df_data[c1_data]<end_d)]
 data_x = np.array(crop_data[c1_data]-min(crop_data[c1_data]))
 data_y = np.array(crop_data[c2_data]/max(crop_data[c2_data]))
@@ -118,6 +119,15 @@ irf_y = np.array(crop[c2]/max(crop[c2]))
 irf_interp = interp1d(irf_x, irf_y)
 irf_yn = irf_interp(data_x)
 irf_yn = irf_yn/max(irf_yn)
+max_common = min(max(irf_x), max(data_x))
+
+# Cut both to same range
+mask = data_x <= max_common
+data_x = data_x[mask]
+data_y = data_y[mask]
+
+irf_interp = interp1d(irf_x, irf_y, bounds_error=False, fill_value=0)
+irf_yn = irf_interp(data_x)
 
 
 left, right = st.columns(2)
