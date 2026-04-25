@@ -122,6 +122,7 @@ st.write(irf_y)
 
 irf_interp = interp1d(irf_x, irf_y)
 irf_yn = irf_interp(data_x)
+st.write(irf_yn)
 irf_yn = irf_yn/max(irf_yn)
 
 
