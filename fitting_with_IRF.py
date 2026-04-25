@@ -286,3 +286,18 @@ if st.session_state.step == 'run_bi':
     file_name="fit_results.csv",
     mime="text/csv"
   )
+
+  df_export = pd.DataFrame({
+    "time_ns": data_x,
+    "data": data_y,
+    "fit": funkc(data_x, *popt)
+  })
+
+  csv_data = df_export.to_csv(index=False).encode('utf-8')
+
+  st.download_button(
+    label="Download data + fit",
+    data=csv_data,
+    file_name="fit_curve.csv",
+    mime="text/csv"
+  )
