@@ -277,3 +277,12 @@ if st.session_state.step == 'run_bi':
   fig.update_yaxes(showgrid=True, gridcolor = "#464755")
 
   st.plotly_chart(fig, use_container_width=True)
+
+  csv = res.to_csv(index=False).encode('utf-8')
+
+  st.download_button(
+    label="Download fit results as CSV",
+    data=csv,
+    file_name="fit_results.csv",
+    mime="text/csv"
+  )
