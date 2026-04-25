@@ -119,15 +119,6 @@ irf_y = np.array(crop[c2]/max(crop[c2]))
 irf_interp = interp1d(irf_x, irf_y)
 irf_yn = irf_interp(data_x)
 irf_yn = irf_yn/max(irf_yn)
-max_common = min(max(irf_x), max(data_x))
-
-# Cut both to same range
-mask = data_x <= max_common
-data_x = data_x[mask]
-data_y = data_y[mask]
-
-irf_interp = interp1d(irf_x, irf_y, bounds_error=False, fill_value=0)
-irf_yn = irf_interp(data_x)
 
 
 left, right = st.columns(2)
