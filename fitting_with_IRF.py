@@ -170,6 +170,9 @@ if st.session_state.step == 'run_exp':
   ribos = pd.DataFrame(data)
 
   eribos = st.data_editor(ribos)
+  st.write("Initial guess:", eribos['spėjimas'].to_numpy())
+  st.write("Bounds min:", eribos['min'].to_numpy())
+  st.write("Bounds max:", eribos['max'].to_numpy())
 
   popt, pcov = curve_fit(funkc, data_x, data_y, bounds = (eribos['min'].to_numpy(), eribos['max'].to_numpy()), p0 = eribos['spėjimas'].to_numpy())
   
