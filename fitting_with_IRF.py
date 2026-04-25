@@ -111,18 +111,18 @@ crop_data = df_data[(df_data[c1_data]>start_d) & (df_data[c1_data]<end_d)]
 data_x = np.array(crop_data[c1_data]-min(crop_data[c1_data]))
 data_y = np.array(crop_data[c2_data]/max(crop_data[c2_data]))
 
-st.write(data_x, data_y)
-
-
 crop = df[(df[c1]>start) & (df[c1]<end)]
 irf_x = np.array(crop[c1]-min(crop[c1]))
-st.write(irf_x)
 irf_y = np.array(crop[c2]/max(crop[c2]))
-st.write(irf_y)
+
+st.write("max difference:", np.max(np.abs(data_x - irf_x[:len(data_x)])))
+st.write("data max:", data_x.max())
+st.write("irf max:", irf_x.max())
+st.write("any above:", np.any(data_x > irf_x.max()))
+st.write("any below:", np.any(data_x < irf_x.min()))
 
 irf_interp = interp1d(irf_x, irf_y)
 irf_yn = irf_interp(data_x)
-st.write(irf_yn)
 irf_yn = irf_yn/max(irf_yn)
 
 
