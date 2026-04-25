@@ -170,9 +170,6 @@ if st.session_state.step == 'run_exp':
   ribos = pd.DataFrame(data)
 
   eribos = st.data_editor(ribos)
-  st.write("Initial guess:", eribos['spėjimas'].to_numpy())
-  st.write("Bounds min:", eribos['min'].to_numpy())
-  st.write("Bounds max:", eribos['max'].to_numpy())
 
   popt, pcov = curve_fit(funkc, data_x, data_y, bounds = (eribos['min'].to_numpy(), eribos['max'].to_numpy()), p0 = eribos['spėjimas'].to_numpy())
   
@@ -217,7 +214,13 @@ if st.session_state.step == 'run_bi':
 
     final = np.convolve(irf_yn, y)
     d = np.argmax(final)-m
+    if d < 0 or d + len(x) > len(final):
+      return np.zeros_like(x)  # safe fallback
+
     final = final[d:d+len(x)]
+
+    if len(final) != len(x):
+      return np.zeros_like(x)
 
     if len(final) == 0:
         st.warning('data smailės padėtis yra per daug dešinėje - pabandyk praleisti daugiau duomenų failo eilučių (data smailė turėtų būti kairiau nei IRF smailė)')
@@ -247,10 +250,7 @@ if st.session_state.step == 'run_bi':
   }
   ribos = pd.DataFrame(data)
   eribos = st.data_editor(ribos)
-  st.write("Initial guess:", eribos['spėjimas'].to_numpy())
-  st.write("Bounds min:", eribos['min'].to_numpy())
-  st.write("Bounds max:", eribos['max'].to_numpy())
-
+  
   popt, pcov = curve_fit(funkc, data_x, data_y, bounds = (eribos['min'], eribos['max']), p0 = eribos['spėjimas'])
   st.write('**Rezultatai iš fit funkcijos:**')
 
