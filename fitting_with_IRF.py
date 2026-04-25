@@ -247,6 +247,9 @@ if st.session_state.step == 'run_bi':
   }
   ribos = pd.DataFrame(data)
   eribos = st.data_editor(ribos)
+  st.write("Initial guess:", eribos['spėjimas'].to_numpy())
+  st.write("Bounds min:", eribos['min'].to_numpy())
+  st.write("Bounds max:", eribos['max'].to_numpy())
 
   popt, pcov = curve_fit(funkc, data_x, data_y, bounds = (eribos['min'], eribos['max']), p0 = eribos['spėjimas'])
   st.write('**Rezultatai iš fit funkcijos:**')
