@@ -118,7 +118,7 @@ irf_y = np.array(crop[c2]/max(crop[c2]))
 irf_interp = interp1d(irf_x, irf_y)
 data_x = np.clip(data_x, irf_x.min(), irf_x.max())
 irf_yn = irf_interp(data_x)
-irf_yn = irf_yn/max(irf_yn)
+irf_yn = (irf_yn-min(irf_yn))/(max(irf_yn)-min(irf_yn))
 
 
 
